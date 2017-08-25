@@ -9,15 +9,15 @@ mkdir -p $2
 cd $2
 
 # Download libgraphqlparser
-if [ ! -f $2/v0.5.0.tar.gz ]; then
-  wget https://github.com/graphql/libgraphqlparser/archive/v0.5.0.tar.gz
+if [ ! -f $2/v0.6.0.tar.gz ]; then
+  wget https://github.com/graphql/libgraphqlparser/archive/v0.6.0.tar.gz
 fi
 
 # Install libgraphqlparser
 mkdir -p $2/libgraphqlparser
-tar -xvzf v0.5.0.tar.gz -C $2/libgraphqlparser
+tar -xvzf v0.6.0.tar.gz -C $2/libgraphqlparser
 
-cd $2/libgraphqlparser/libgraphqlparser-0.5.0
+cd $2/libgraphqlparser/libgraphqlparser-0.6.0
 
 cmake .
 make
