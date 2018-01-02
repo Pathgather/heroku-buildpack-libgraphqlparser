@@ -5,6 +5,8 @@
 # $2 = cache_dir
 # $3 = env_dir (contains a file for each of the app's config variables)
 
+echo "Building libgraphqlparser 0.7.0..."
+
 mkdir -p $2
 cd $2
 
