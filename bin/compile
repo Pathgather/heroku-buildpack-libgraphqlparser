@@ -7,6 +7,9 @@
 
 echo "Building libgraphqlparser 0.7.0..."
 
+echo "Build dir: $1"
+echo "Cache dir: $2"
+
 mkdir -p $2
 cd $2
 
@@ -28,10 +31,10 @@ make install DESTDIR=$2/libgraphqlparser-files
 mkdir -p $1/libgraphqlparser
 cp -r $2/libgraphqlparser-files/usr/local/* $1/libgraphqlparser
 
-# # Make the library files available to later buildpacks
-# echo "Adding libgraphqlparser to LD_LIBRARY_PATH..."
-# export LD_LIBRARY_PATH="$1/libgraphqlparser/lib:$LD_LIBRARY_PATH"
-# echo "$LD_LIBRARY_PATH"
+# Make the library files available to later buildpacks
+echo "Adding libgraphqlparser to LD_LIBRARY_PATH..."
+export LD_LIBRARY_PATH="$1/libgraphqlparser/lib:$LD_LIBRARY_PATH"
+echo "$LD_LIBRARY_PATH"
 
 # Create .bundle/config if it doesn't already exist
 mkdir -p "$1/.bundle"
@@ -39,6 +42,6 @@ mkdir -p "$1/.bundle"
 echo "BUNDLE_BUILD__GRAPHQL-LIBGRAPHQLPARSER: \"--with-graphql-include=$1/libgraphqlparser/include/graphqlparser --with-graphql-lib=$1/libgraphqlparser/lib\"" >> $1/.bundle/config
 
 echo ".bundle/config:"
-cat .bundle/config
+cat $1/.bundle/config
 
 exit 0
